@@ -1,0 +1,16 @@
+{
+  "name": "lesson-2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "deque.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fraction": "^0.2.0",
+    "graph-dijkstra": "git+https://github.com/LincolnTechOpenSource/graph-dijkstra.git"
+  }
+}
