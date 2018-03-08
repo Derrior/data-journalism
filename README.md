@@ -64,6 +64,7 @@
     * who.int
 * Исследования
     * Публикации - scimagojr.com
-    * Финансирование - oecd.org
+    * Финансирование - oecd.org, data.worldbank.org
 * Экология
     * data.worldbank.org
+
