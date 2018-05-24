@@ -24,13 +24,24 @@
                 font-family: 'PT Sans', serif;
                 text-align: 'c';
             }
-            text {
-                font-size: 12px;
-                font-family: 'PT Sans';
+            @media (orientation: portrait) {
+                text {
+                    font-size: 20px;
+                    font-family: 'PT Sans';
+                }
+                section {
+                    font-size: 22px;
+                    font-family: 'PT Sans';
+                }
             }
-            section {
-                font-size: 18px;
-                font-family: 'PT Sans';
+            @media (orientation: landscape) {
+                text {
+                    font-size: 12px;
+                }
+                section {
+                    font-size: 18px;
+                    font-family: 'PT Sans';
+                }
             }
             #mapid { height: 680px; }
 
@@ -112,15 +123,13 @@
                 </div>
                 </div>
                 Посмотрим на те страны, в которых показатель заболеваемости наивысший.
-                <canvas id="mal-neoplasms" width="400" height="400"> </canvas>
+                <canvas id="mal-neoplasms" width="400" height=300px> </canvas>
             </section>
-             <div id="mapid"></div>
         <img src="articles_stats.png" width="320">
         <br>
         <a href="articles_stats.html">graph table</a>
         <br>
         <a href="min_max_homicides.html">Homicides</a>
-        <div id="container"></div>
 
         </article>
           <!-- Make sure you put this AFTER Leaflet's CSS
