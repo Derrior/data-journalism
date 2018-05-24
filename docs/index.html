@@ -1,12 +1,141 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
+
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Биология сегодня</title>
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+         <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i&amp;subset=cyrillic">
+         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
+            integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+               crossorigin=""/>
+        <style>
+            *, h1, h2, h3, h4, h5, h6 {
+                font-family: 'PT Sans', serif;
+                text-align: 'c';
+            }
+            text {
+                font-size: 12px;
+                font-family: 'PT Sans';
+            }
+            section {
+                font-size: 18px;
+                font-family: 'PT Sans';
+            }
+            #mapid { height: 680px; }
+
+            #container {
+                    max-width: 400px;
+                            height: 360px;
+                                    margin: 0 auto;
+            }
+            #table-div {
+                    max-width: 400px;
+                            margin: 3em auto;
+            }
+        </style>
     </head>
-    <h2> Articles about genetics, psychology, molecular biology</h2>
     <body>
+        <article class="container mt-4">
+            <h2> Достижения в области биологии в XXI веке </h2>
+            <section class="container">
+                Вопреки распространённому мнению, что всё что можно открыть, уже открыто, биология -
+                активно развивающаяся наука. Еженедельно описываются новые виды, в цепочке ДНК
+                обретают смысл новые фрагменты, изобретаются все более и более эффективные способы
+                лечения и профилактики.
+            </section>
+
+            <section class = "container">
+                Но вместе с тем все открытия и успехи в таких жизненно важных обастях, как медицина
+                или анатомия, часто сводятся на нет в целых странах или даже во всём мире из-за
+                предрассудков и устаревшего видения мира. Так, <a href="https://infogram.com/izmerenie_nauchnoi_gramotnosti_rossiyan_2014">исследование</a>
+                2014-го года показало,
+                что всего лишь 33% россиян уверены в том, что гены несут в себе все живые существа,
+                а не только генетически модифицированные. Это свидетельствует о необразованности в
+                понимании собственной природы, что зaставляет принимать на веру разные псевдонаучные
+                утверждения.
+            </section>
+            <section class = "container">
+                Этот проект призван рассказать о развитии биологии в последние несколько лет,
+                заинтересовать читателя в дальнейшем изучении предмета (ведь отсутствие знаний может
+                привести к серьёзной угрозе здоровью), о мировой картине здравоохранения, а также
+                сравнить различные направления исследований.
+            </section>
+            <h3>Статистика ВОЗ</h3>
+            <section class = "container">
+                Первое, что приходит на ум при исследовании заболеваемости и смертности --
+                использовать результаты организации, которая ставит основной целью улучшение
+                здравоохранения во всём мире, сделать лечение НИЗ (неинфекционных заболеваний) более
+                доступным.
+            </section>
+            <section class = "container">
+                <div class = "row justify-content-end">
+                <div class = "col-md-10 align-self-end">
+
+                <blockquote class = "blockquote text-right">
+                    <p>
+                    Неинфекционные заболевания (НИЗ), включая болезни сердца, <..> нарушения
+                    психического здоровья, а также насилие и травмы, в общей сложности, приводят к
+                    более чем 70% всех случаев смерти в мире. Восемь из 10 таких случаев происходят
+                    в странах с низким и средним уровнем дохода.
+                    </p>
+                    <cite> Сайт Всемирной Организации Здравоохранения</cite>
+                </blockquote>
+
+                </div>
+                </div>
+                <div class = "row">
+                <div class = "col-9">
+                Рассмотрим в качестве примера НИЗ одно из тех заболеваний, над способом лечения
+                которых работают множество исследовательских команд в России и во всём
+                мире -- онкология. </div>
+                <div class = "col-3">
+
+                    <a role="button" class="btn btn-primary"
+                            href="http://www.xinhuanet.com/english/2018-03/02/c_137010384.htm">Статья
+                    1</a>
+                    <a role="button" class="btn btn-secondary"
+
+                                     href="https://medicalxpress.com/news/2018-05-particle-triple-negative-breast-cancer.html">Статья
+                                     2</a>
+
+                </div>
+                </div>
+                Посмотрим на те страны, в которых показатель заболеваемости наивысший.
+                <canvas id="mal-neoplasms" width="400" height="400"> </canvas>
+            </section>
+             <div id="mapid"></div>
         <img src="articles_stats.png" width="320">
         <br>
         <a href="articles_stats.html">graph table</a>
         <br>
         <a href="min_max_homicides.html">Homicides</a>
+        <div id="container"></div>
+
+        </article>
+          <!-- Make sure you put this AFTER Leaflet's CSS
+           <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"
+                      integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw=="
+                         crossorigin=""></script>
+        <script src="sample-geojson.js"></script>
+        <script src="leaflet.js"></script>
+        <script src="proj4-compressed.js"></script>
+        <script src="proj4leaflet.js"></script>
+        <script src="species-map.js"></script>
+        -->
+        <script src="bundle.js"></script>
+
+
+
     </body>
 </html>
