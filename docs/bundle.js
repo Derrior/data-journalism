@@ -18910,6 +18910,8 @@ create_chart = function(ctx, data, type, title) {
 
 
             title: {
+                fontSize: 18,
+                fontColor: "#444",
                 display: true,
                 text: title
             },
