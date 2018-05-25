@@ -26,12 +26,14 @@ create_chart = function(ctx, data, type, title) {
                 }]
             },
 
+            responsiveAnimationDuration: 400,
 
             title: {
                 fontSize: 18,
                 fontColor: "#444",
                 display: true,
                 text: title
+
             },
             legend: {
                 display: legend_shown
@@ -43,6 +45,7 @@ create_chart = function(ctx, data, type, title) {
 neoplasms_chart = function() {
     var ctx = document.getElementById("mal-neoplasms").getContext('2d');
     var title = "Malignant neoplasms: the most suffering countries, YLD per 1m capita";
+    var title_rus = ["Злокачественные новообразования: наиболее подверженные страны,", "значение YLD на 1 миллион населения"];
     var chart_data = {labels: [], datasets: [
         {
             data: [],
@@ -52,13 +55,14 @@ neoplasms_chart = function() {
     };
     var loading = load_data(chart_data, "resources/neoplasms.json");
     return loading.then(function() {
-        return create_chart(ctx, chart_data, "horizontalBar", title);
+        return create_chart(ctx, chart_data, "horizontalBar", title_rus);
     });
 }
 
 mental_disorders_chart = function() {
     var ctx = document.getElementById("mental").getContext('2d');
     var title = "Mental disorders: the most suffering countries, YLD per 1m capita";
+    var title_rus = ["Психические расстройства: наиболее подверженные страны,", "значение YLD на 1 миллион населения"];
     var chart_data = {labels: [], datasets: [
         {
             data: [],
@@ -69,7 +73,7 @@ mental_disorders_chart = function() {
 
     var loading = load_data(chart_data, "resources/mental.json");
     return loading.then(function() {
-        return create_chart(ctx, chart_data, "horizontalBar", title);
+        return create_chart(ctx, chart_data, "horizontalBar", title_rus);
     });
 };
 
@@ -99,8 +103,10 @@ india_china_comm_chart = function() {
            chart_data.datasets[1].data.push(k[1]);
         });
     });
+    var title_rus = "Заразные заболевания в Индии и Китае, значение YLD";
+    var title_eng = "Communicable diseases in China and India, YLD";
     return loading.then(function() {
-        return create_chart(ctx, chart_data, "horizontalBar", "Communicable diseases in China and India, YLD");
+        return create_chart(ctx, chart_data, "horizontalBar", title_rus);
     });
 }
 india_china_ncomm_chart = function() {
@@ -128,8 +134,10 @@ india_china_ncomm_chart = function() {
            chart_data.datasets[1].data.push(k[1]);
         });
     });
+    var title_rus = "Незаразные заболевания в Индии и Китае, значение YLD";
+    var title_eng = "Non-communicable diseases in China and India, YLD";
     return loading.then(function() {
-        return create_chart(ctx, chart_data, "horizontalBar", "Non-communicable diseases in China and India, YLD");
+        return create_chart(ctx, chart_data, "horizontalBar", title_rus);
     });
 };
 

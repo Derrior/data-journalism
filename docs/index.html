@@ -24,14 +24,45 @@
                 font-family: 'PT Sans', serif;
                 text-align: 'c';
             }
+            text {
+                font-family: 'PT Sans';
+            }
+            section {
+                font-family: 'PT Sans';
+            }
+
+            @media ((max-width:1000px) and (orientation: portrait)) {
+                text {
+                    font-size: 24px;
+                }
+                section {
+                    font-size: 26px;
+                }
+            }
+
             @media (orientation: portrait) {
                 text {
                     font-size: 20px;
-                    font-family: 'PT Sans';
                 }
                 section {
                     font-size: 22px;
-                    font-family: 'PT Sans';
+                }
+            }
+            @media ((max-width:991px) and (orientation: landscape)) {
+                text {
+                    font-size: 20px;
+                }
+                section {
+                    font-size: 22px;
+                }
+            }
+
+            @media (orientation: landscape) {
+                text {
+                    font-size: 16px;
+                }
+                section {
+                    font-size: 18px;
                 }
             }
             @media (max-width: 991px) {
@@ -40,31 +71,20 @@
                 }
                 .container {
                     margin: 20px;
-                }
-            }
-            @media (orientation: landscape) {
-                text {
-                    font-size: 12px;
-                }
-                section {
-                    font-size: 18px;
-                    font-family: 'PT Sans';
+                    min-width: 800px;
                 }
             }
             #mapid { height: 680px; }
 
-            #container {
-                    max-width: 400px;
-                    height: 360px;
-                    margin: 0 auto;
-            }
-            #table-div {
-                    max-width: 400px;
-                    margin: 3em auto;
-            }
             body {
                 min-width: 800px;
                 margin: 20px;
+            }
+            blockquote {
+                padding: 20px;
+            }
+            canvas {
+                padding: 20px;
             }
         </style>
     </head>
@@ -140,7 +160,7 @@
                 </div>
                 </div>
                 Посмотрим на те страны, в которых показатель заболеваемости наивысший.
-                <canvas id="mal-neoplasms" height=150em> </canvas>
+                <canvas id="mal-neoplasms" height=200rem> </canvas>
                 Мы видим, что больше всего люди страдают от злокачественных опухолей в продвинутых,
                 экономически благополучных европейских странах. Барбадос не находится у всех на
                 слуху, но согласно Программе Развития ООН (ПРООН), Барбадос находится
@@ -151,7 +171,7 @@
                 Другая ветвь медицины, активно изучаемая в настоящее время -- психология, как мы
                 видим на графике, отражающем количество статей в год.
                 Узнаем, жители каких стран наиболее подвержены психическим расстройствам.
-                <canvas id="mental", height=120em> </canvas>
+                <canvas id="mental", height=160rem> </canvas>
 
                 Совсем другой график, всего 2 страны есть в обоих графиках: США и Австралия, а
                 этом графике очень много стран бывшего Советского Союза.
