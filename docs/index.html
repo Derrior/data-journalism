@@ -34,6 +34,14 @@
                     font-family: 'PT Sans';
                 }
             }
+            @media (max-width: 991px) {
+                .sm-offset {
+                      margin-bottom:15px;
+                }
+                .container {
+                    margin: 20px;
+                }
+            }
             @media (orientation: landscape) {
                 text {
                     font-size: 12px;
@@ -47,12 +55,16 @@
 
             #container {
                     max-width: 400px;
-                            height: 360px;
-                                    margin: 0 auto;
+                    height: 360px;
+                    margin: 0 auto;
             }
             #table-div {
                     max-width: 400px;
-                            margin: 3em auto;
+                    margin: 3em auto;
+            }
+            body {
+                min-width: 800px;
+                margin: 20px;
             }
         </style>
     </head>
@@ -128,7 +140,7 @@
                 </div>
                 </div>
                 Посмотрим на те страны, в которых показатель заболеваемости наивысший.
-                <canvas id="mal-neoplasms" width=100px> </canvas>
+                <canvas id="mal-neoplasms" height=150em> </canvas>
                 Мы видим, что больше всего люди страдают от злокачественных опухолей в продвинутых,
                 экономически благополучных европейских странах. Барбадос не находится у всех на
                 слуху, но согласно Программе Развития ООН (ПРООН), Барбадос находится
@@ -139,31 +151,31 @@
                 Другая ветвь медицины, активно изучаемая в настоящее время -- психология, как мы
                 видим на графике, отражающем количество статей в год.
                 Узнаем, жители каких стран наиболее подвержены психическим расстройствам.
-                <canvas id="mental", width=100px> </canvas>
+                <canvas id="mental", height=120em> </canvas>
 
                 Совсем другой график, всего 2 страны есть в обоих графиках: США и Австралия, а
                 этом графике очень много стран бывшего Советского Союза.
             </section>
             <section class="container">
                 <div class="row">
-                    <div class="col-lg-8">
-                    <canvas id="india_china_c", width=100px> </canvas>
+                    <div class="col-lg-8 sm-offset">
+                    <canvas id="india_china_c", height=150px> </canvas>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-4 sm-offset">
                         В Индии население немногим меньше, чем в Китае, в обеих странах более
                         миллиарда жителей. Сравним показатели заболеваемостей.
 
-                            <li>Первый график -- заразные заболевания, и на графике видно, что в Индии
+                        <li>Первый график -- заразные заболевания, и на графике видно, что в Индии
                                 во всех категориях таких заболеваний больных в 2-4 раза больше.</li>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-8">
-                    <canvas id="india_china_nc", width=100px, height=70px> </canvas>
+                    <canvas id="india_china_nc", height=200px> </canvas>
                     </div>
                     <div class="col-lg-4">
 
-                            <li>Второй график -- НИЗ, значения в обеих странах практически совпадают, а в
+                        <li>Второй график -- НИЗ, значения в обеих странах практически совпадают, а в
                         отдельных случаях значения для Китая в разы больше соответствующего значения
                         у Индии.<br> Например, "Malignant neoplasms" - Злокачественные образования -
                         заболеваемость в Китае втрое выше, чем в Индии. </li>
@@ -178,6 +190,54 @@
         <a href="articles_stats.html">graph table</a>
         <br>
         <a href="min_max_homicides.html">Homicides</a>
+        <section class="container">
+            <h3 align="center">Данные</h3>
+            <hr>
+            <div class="row">
+                <div class="col-lg-6 sm-offset">
+                    <h4 align="center"> Источники </h4>
+                    <ul class="list-group">
+                         <a class="list-group-item active" href="who.int">Сайт Всемирной Организации Здравоохранения
+                         </a>
+                            <li class="list-group-item"> Примерные <a
+                 href="http://www.who.int/healthinfo/global_burden_disease/GHE2015_YLD-2015-country.xls?ua=1">
+                                    значения
+                 </a> заболеваемости, YLD
+                            </li>
+                            <li class="list-group-item"> Данные смертности, часть <a
+                 href="http://www.who.int/entity/healthinfo/statistics/Morticd10_part1.zip?ua=1">1</a>, <a
+                 href="http://www.who.int/entity/healthinfo/statistics/Morticd10_part2.zip?ua=1">2</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a
+                 href="http://apps.who.int/nha/database/Home/IndicatorsDownload/en">
+                                    Бюджет</a> здравоохранения в процентах от ВВП
+                            </li>
+                         <a class="list-group-item active" href="worldbank.org">worldbank.org</a>
+                                <li class="list-group-item"> ВВП стран мира <a
+                     href="http://api.worldbank.org/v2/en/indicator/NY.GDP.MKTP.CD?downloadformat=csv">
+                                        GDP</a></li>
+                        <a class="list-group-item active" class="list-group-item"
+                                                          href="scimagojr.com"> Каталог статей scimago</a>
+                        <li class="list-group-item"> <a href="data/scimago.zip">Данные</a> собраны с помощью scrapy.</li>
+                    </ul>
+                </div>
+                <div class="col-lg-6 sm-offset">
+                    <h4 align="center">Обработка</h4>
+                    <ul class="list-group">
+                        <li class="list-group-item"> Тетрадка с данными ВОЗ
+
+                            <div class="btn-group float-right"  role="group">
+                                <a role="button" class="btn btn-secondary"
+                                                                                        href="data/notebooks/html/who-data.html">Открыть</a>
+                                <a role="button" class="btn btn-warning"
+                                                 href="data/notebooks/python/who-data.ipynb">Скачать</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
         </article>
           <!-- Make sure you put this AFTER Leaflet's CSS

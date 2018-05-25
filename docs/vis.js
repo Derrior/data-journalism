@@ -42,7 +42,7 @@ create_chart = function(ctx, data, type, title) {
 
 neoplasms_chart = function() {
     var ctx = document.getElementById("mal-neoplasms").getContext('2d');
-    var title = "Malignant neoplasms: the most suffering countries, years lost due to disability per 1m capita";
+    var title = "Malignant neoplasms: the most suffering countries, YLD per 1m capita";
     var chart_data = {labels: [], datasets: [
         {
             data: [],
@@ -58,7 +58,7 @@ neoplasms_chart = function() {
 
 mental_disorders_chart = function() {
     var ctx = document.getElementById("mental").getContext('2d');
-    var title = "Mental disorders: the most suffering countries, years lost due to disability per 1m capita";
+    var title = "Mental disorders: the most suffering countries, YLD per 1m capita";
     var chart_data = {labels: [], datasets: [
         {
             data: [],
