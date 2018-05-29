@@ -1,7 +1,7 @@
 var Chart = require("chart.js")
 var colors = require('nice-color-palettes')
 
-Chart.defaults.global.defaultFontSize = 16;
+Chart.defaults.global.defaultFontSize = 20;
 
 load_data = function(chart_data, name) {
     var who_data = fetch(name).then(string => string.json());

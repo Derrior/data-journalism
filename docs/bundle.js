@@ -18883,7 +18883,7 @@ module.exports=[["#69d2e7","#a7dbd8","#e0e4cc","#f38630","#fa6900"],["#fe4365","
 var Chart = require("chart.js")
 var colors = require('nice-color-palettes')
 
-Chart.defaults.global.defaultFontSize = 16;
+Chart.defaults.global.defaultFontSize = 20;
 
 load_data = function(chart_data, name) {
     var who_data = fetch(name).then(string => string.json());

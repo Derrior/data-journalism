@@ -4,7 +4,7 @@
 
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Биология сегодня</title>
+        <title>Анализ данных ВОЗ</title>
         <link
             rel="stylesheet"
             href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -29,9 +29,27 @@
             }
             section {
                 font-family: 'PT Sans';
+                margin-bottom: 30px;
             }
 
             @media ((max-width:1000px) and (orientation: portrait)) {
+                text {
+                    font-size: 28px;
+                }
+                section {
+                    font-size: 30px;
+                }
+            }
+
+            @media (orientation: portrait) {
+                text {
+                    font-size: 24px;
+                }
+                section {
+                    font-size: 26px;
+                }
+            }
+            @media ((max-width:991px) and (orientation: landscape)) {
                 text {
                     font-size: 24px;
                 }
@@ -40,29 +58,12 @@
                 }
             }
 
-            @media (orientation: portrait) {
-                text {
-                    font-size: 20px;
-                }
-                section {
-                    font-size: 22px;
-                }
-            }
-            @media ((max-width:991px) and (orientation: landscape)) {
-                text {
-                    font-size: 20px;
-                }
-                section {
-                    font-size: 22px;
-                }
-            }
-
             @media (orientation: landscape) {
                 text {
-                    font-size: 16px;
+                    font-size: 20px;
                 }
                 section {
-                    font-size: 18px;
+                    font-size: 22px;
                 }
             }
             @media (max-width: 991px) {
@@ -90,8 +91,8 @@
     </head>
     <body>
         <article class="container mt-4">
-            <h2> Достижения в области биологии в XXI веке </h2>
             <section class="container">
+            <h2> Достижения в области биологии в XXI веке </h2>
                 Вопреки распространённому мнению, что всё что можно открыть, уже открыто, биология -
                 активно развивающаяся наука. Еженедельно описываются новые виды, в цепочке ДНК
                 обретают смысл новые фрагменты, изобретаются все более и более эффективные способы
@@ -114,8 +115,8 @@
                 привести к серьёзной угрозе здоровью), о мировой картине здравоохранения, а также
                 сравнить различные направления исследований.
             </section>
-            <h3>Статистика ВОЗ</h3>
             <section class = "container">
+            <h3>Статистика ВОЗ</h3>
                 Первое, что приходит на ум при исследовании заболеваемости и смертности --
                 использовать результаты организации, которая ставит основной целью улучшение
                 здравоохранения во всём мире, сделать лечение НИЗ (неинфекционных заболеваний) более
@@ -149,10 +150,10 @@
                 мире -- онкология. </div>
                 <div class = "col-3">
 
-                    <a role="button" class="btn btn-primary"
+                    <a role="button" class="btn btn-link"
                             href="http://www.xinhuanet.com/english/2018-03/02/c_137010384.htm">Статья
                     1</a>
-                    <a role="button" class="btn btn-secondary"
+                    <a role="button" class="btn btn-link"
 
                                      href="https://medicalxpress.com/news/2018-05-particle-triple-negative-breast-cancer.html">Статья
                                      2</a>
@@ -160,7 +161,11 @@
                 </div>
                 </div>
                 Посмотрим на те страны, в которых показатель заболеваемости наивысший.
-                <canvas id="mal-neoplasms" height=200rem> </canvas>
+                <div class = "row">
+                <div class = "col-md-10">
+                <canvas id="mal-neoplasms" height=200px> </canvas>
+                </div>
+                </div>
                 Мы видим, что больше всего люди страдают от злокачественных опухолей в продвинутых,
                 экономически благополучных европейских странах. Барбадос не находится у всех на
                 слуху, но согласно Программе Развития ООН (ПРООН), Барбадос находится
@@ -171,19 +176,23 @@
                 Другая ветвь медицины, активно изучаемая в настоящее время -- психология, как мы
                 видим на графике, отражающем количество статей в год.
                 Узнаем, жители каких стран наиболее подвержены психическим расстройствам.
-                <canvas id="mental", height=160rem> </canvas>
+                <div class = "row">
+                <div class = "col-md-10">
+                <canvas id="mental" height=180px> </canvas>
+                </div>
+                </div>
 
                 Совсем другой график, всего 2 страны есть в обоих графиках: США и Австралия, а
                 этом графике очень много стран бывшего Советского Союза.
             </section>
             <section class="container">
                 <div class="row">
+                        В Индии население немногим меньше, чем в Китае, в обеих странах более
+                        миллиарда жителей. Сравним показатели заболеваемостей.
                     <div class="col-lg-8 sm-offset">
                     <canvas id="india_china_c", height=150px> </canvas>
                     </div>
                     <div class="col-lg-4 sm-offset">
-                        В Индии население немногим меньше, чем в Китае, в обеих странах более
-                        миллиарда жителей. Сравним показатели заболеваемостей.
 
                         <li>Первый график -- заразные заболевания, и на графике видно, что в Индии
                                 во всех категориях таких заболеваний больных в 2-4 раза больше.</li>
