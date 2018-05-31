@@ -241,8 +241,8 @@ healthexp_map = function() {
 
     var numbers_pr = fetch("resources/exp-map.json").then(string => string.json());
     var countries_pr = fetch("resources/countries.geo.json").then(string => string.json());
-    var curr_colors = ["#FFFFFF", "#557700", "#778800", "#885500", "#773333", "#772277", "#6622bb", "#3322bb", "#1111bb", "#111155"];
-    var end_values = [0.5, 1, 2, 4, 6, 8, 10, 13, 20, 30];
+    var curr_colors = ["#FFEDA0", "#FED976", "#FEB24C", "#FD8D3C", "#FC4E3A", "#E31A1C", "#BD0026", "#800026"];
+    var end_values = [0.5, 1, 2, 4, 6, 8, 14, 20];
     countries_pr.then(countries => {
         numbers_pr.then(numbers => {
             L.geoJSON(countries, {
@@ -314,6 +314,98 @@ healthexp_map = function() {
     });
 };
 
+
+
+
+infectious_map = function() {
+
+    const el = document.getElementById('infectious-map');
+    var map = L.map(el).setView([0, 0], 2);
+     L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+            subdomains: 'abcd',
+            minZoom: 1,
+            maxZoom: 19
+             }).addTo(map);
+
+
+
+    var numbers_pr = fetch("resources/infectious.json").then(string => string.json());
+    var countries_pr = fetch("resources/countries.geo.json").then(string => string.json());
+    var curr_colors = ["#FFEDA0", "#FED976", "#FEB24C", "#FD8D3C", "#FC4E3A", "#E31A1C", "#BD0026", "#800026"];
+    var end_values = [0.1, 0.5, 1, 2, 5, 10, 20, 40];
+    countries_pr.then(countries => {
+        numbers_pr.then(numbers => {
+            L.geoJSON(countries, {
+                style: function(feature) {
+                    var name = feature.properties.name;
+                    var exp_diff = numbers[name];
+
+                    var ret = {
+                        color: "#000",
+                        weight: 0.4,
+                        popupContent: exp_diff,
+                        opacity: 0.5,
+                        fillOpacity: 0.8,
+
+
+                        };
+                    if (exp_diff == undefined) {
+                        console.log(name);
+                        ret.opacity = 0;
+                        ret.fillColor = "#ffffff";
+                    } else {
+                        for (var i = 0; i < end_values.length; i++) {
+                            if (end_values[i] > exp_diff) {
+                                ret.fillColor = curr_colors[i];
+                                return ret;
+                            }
+                        }
+                    }
+                    return ret;
+                },
+
+                onEachFeature: function(feature, layer) {
+                    var name = feature.properties.name;
+                    var exp_diff = numbers[name];
+                    var popup = name + ": " + exp_diff + "YLD per capita";
+                    if (exp_diff == undefined) {
+                        popup = "No data about " + name;
+                    }
+                    layer.bindPopup(popup);
+                }
+
+            }).addTo(map);
+        });
+
+    var legend = L.control({position: 'bottomright'});
+
+	legend.onAdd = function (map) {
+
+		var div = L.DomUtil.create('div', 'info legend'),
+			grades = end_values,
+			labels = [],
+			from, to;
+
+		for (var i = 0; i < grades.length; i++) {
+			from = grades[i];
+			to = grades[i + 1];
+
+			labels.push(
+				'<i style="background:' + curr_colors[i + 1] + '"></i> ' +
+				from + (to ? '&ndash;' + to : '+'));
+		}
+
+		div.innerHTML = labels.join('<br>');
+        console.log(div);
+		return div;
+	};
+
+	legend.addTo(map);
+    });
+};
+
+
 var np_chart = neoplasms_chart();
 var md_chart = mental_disorders_chart();
 india_china_comm_chart();
@@ -321,3 +413,6 @@ india_china_ncomm_chart();
 healthexp_chart();
 healthexp_map();
 max_healthexp_chart();
+infectious_map();
+
+

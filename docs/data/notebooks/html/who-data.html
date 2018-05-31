@@ -12267,7 +12267,7 @@ The minimum supported version is 2.4.6
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">diff</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">()</span>
@@ -12294,7 +12294,7 @@ The minimum supported version is 2.4.6
 <span class="n">highest_exp</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">diff</span><span class="p">[</span><span class="o">-</span><span class="mi">7</span><span class="p">:]</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
     <span class="n">highest_exp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">health_exp_abs_pc</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-
+<span class="n">highest_exp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;2012&quot;</span><span class="p">:</span><span class="s2">&quot;2002&quot;</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="s2">&quot;../docs/resources/highest-exp.json&quot;</span><span class="p">)</span>
 <span class="n">highest_exp</span><span class="p">[</span><span class="s2">&quot;Year&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">highest_exp</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
 
 <span class="n">highest_exp</span> <span class="o">=</span> <span class="n">highest_exp</span><span class="p">[</span><span class="n">highest_exp</span><span class="p">[</span><span class="s2">&quot;Year&quot;</span><span class="p">]</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
@@ -13171,125 +13171,24 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[54]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">filtered_bae</span><span class="p">[</span><span class="n">filtered_bae</span><span class="p">[</span><span class="s2">&quot;Infectious and parasitic diseases&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">2000</span><span class="p">]</span>
+
+<span class="n">burden_and_expenditure</span><span class="p">[</span><span class="s2">&quot;Infectious and parasitic diseases r&quot;</span><span class="p">][</span><span class="s2">&quot;Russia&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">filtered_bae</span><span class="p">[</span><span class="s2">&quot;Infectious and parasitic diseases r&quot;</span><span class="p">][</span><span class="s2">&quot;Russian Federation&quot;</span><span class="p">]</span>
+<span class="c1">#filtered_bae[&quot;Infectious and parasitic diseases r&quot;][&quot;Czech Republic&quot;] = filtered_bae[&quot;Infectious and parasitic diseases r&quot;][&quot;Czechia&quot;]</span>
+<span class="c1">#filtered_bae[&quot;Infectious and parasitic diseases r&quot;][&quot;United Kingdom&quot;] = filtered_bae[&quot;Infectious and parasitic diseases r&quot;][&quot;United Kingdom of Great Britain and Northern Ireland&quot;]</span>
+<span class="n">burden_and_expenditure</span><span class="p">[</span><span class="s2">&quot;Infectious and parasitic diseases r&quot;</span><span class="p">][</span><span class="s2">&quot;Iran&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">filtered_bae</span><span class="p">[</span><span class="s2">&quot;Infectious and parasitic diseases r&quot;</span><span class="p">][</span><span class="s2">&quot;Iran (Islamic Republic of)&quot;</span><span class="p">]</span>
+<span class="n">burden_and_expenditure</span><span class="p">[</span><span class="s2">&quot;Infectious and parasitic diseases r&quot;</span><span class="p">][</span><span class="s2">&quot;Venezuela&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">filtered_bae</span><span class="p">[</span><span class="s2">&quot;Infectious and parasitic diseases r&quot;</span><span class="p">][</span><span class="s2">&quot;Venezuela (Bolivarian Republic of)&quot;</span><span class="p">]</span>
+<span class="n">burden_and_expenditure</span><span class="p">[</span><span class="s2">&quot;Infectious and parasitic diseases r&quot;</span><span class="p">][</span><span class="s2">&quot;Vietnam&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">filtered_bae</span><span class="p">[</span><span class="s2">&quot;Infectious and parasitic diseases r&quot;</span><span class="p">][</span><span class="s2">&quot;Viet Nam&quot;</span><span class="p">]</span>
+                                                                                                                                                                         
+
+
+<span class="n">burden_and_expenditure</span><span class="p">[</span><span class="s2">&quot;Infectious and parasitic diseases r&quot;</span><span class="p">][</span><span class="s2">&quot;Afghanistan&quot;</span><span class="p">:]</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="s2">&quot;../docs/resources/infectious.json&quot;</span><span class="p">)</span>
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[19]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th>Name</th>
-      <th>Population ('000) (2)</th>
-      <th>All Causes</th>
-      <th>Communicable, maternal, perinatal and nutritional conditions</th>
-      <th>Infectious and parasitic diseases</th>
-      <th>Respiratory Infectious</th>
-      <th>Maternal conditions</th>
-      <th>Neonatal conditions</th>
-      <th>Nutritional deficiencies</th>
-      <th>Noncommunicable diseases</th>
-      <th>Malignant neoplasms</th>
-      <th>...</th>
-      <th>Genitourinary diseases r</th>
-      <th>Skin diseases r</th>
-      <th>Musculoskeletal diseases r</th>
-      <th>Congenital anomalies r</th>
-      <th>Oral conditions r</th>
-      <th>Injuries r</th>
-      <th>Unintentional injuries r</th>
-      <th>Intentional injuries r</th>
-      <th>2014</th>
-      <th>2009</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Democratic Republic of the Congo</th>
-      <td>77267.0</td>
-      <td>8826.190780</td>
-      <td>4385.637341</td>
-      <td>3254.203609</td>
-      <td>117.850021</td>
-      <td>22.874782</td>
-      <td>86.007184</td>
-      <td>904.701745</td>
-      <td>4103.496904</td>
-      <td>27.499229</td>
-      <td>...</td>
-      <td>2.221148</td>
-      <td>2.889003</td>
-      <td>7.077162</td>
-      <td>0.969804</td>
-      <td>1.553043</td>
-      <td>4.362231</td>
-      <td>3.948021</td>
-      <td>0.414210</td>
-      <td>11.06</td>
-      <td>18.69</td>
-    </tr>
-    <tr>
-      <th>Nigeria</th>
-      <td>182202.0</td>
-      <td>17221.356446</td>
-      <td>6259.598770</td>
-      <td>3137.938561</td>
-      <td>178.064189</td>
-      <td>63.141386</td>
-      <td>217.853307</td>
-      <td>2662.601328</td>
-      <td>9833.365459</td>
-      <td>64.733101</td>
-      <td>...</td>
-      <td>2.667187</td>
-      <td>2.441389</td>
-      <td>7.835746</td>
-      <td>0.720120</td>
-      <td>1.151731</td>
-      <td>6.193084</td>
-      <td>5.533613</td>
-      <td>0.659471</td>
-      <td>8.17</td>
-      <td>7.37</td>
-    </tr>
-  </tbody>
-</table>
-<p>2 rows × 54 columns</p>
-</div>
-</div>
-
-</div>
-
 </div>
 </div>
 
