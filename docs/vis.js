@@ -1,5 +1,6 @@
 var Chart = require("chart.js")
 var colors = require('nice-color-palettes')
+var Leaflet = require("leaflet")
 
 Chart.defaults.global.defaultFontSize = 20;
 
@@ -14,6 +15,7 @@ load_data = function(chart_data, name) {
 
 create_chart = function(ctx, data, type, title) {
     var legend_shown = (data.datasets.length > 1);
+
     return new Chart(ctx, {
         type: type,
         data: data,
@@ -23,10 +25,17 @@ create_chart = function(ctx, data, type, title) {
                     ticks: {
                         beginAtZero:true
                     }
+                }],
+
+                yAxes: [{
+                    ticks: {
+                        autoSkip: true
+                    }
                 }]
             },
 
             responsiveAnimationDuration: 400,
+            barThickness: 16,
 
             title: {
                 fontSize: 18,
@@ -38,9 +47,10 @@ create_chart = function(ctx, data, type, title) {
             legend: {
                 display: legend_shown
             }
-        }
-    });
+
+        }});
 };
+
 
 neoplasms_chart = function() {
     var ctx = document.getElementById("mal-neoplasms").getContext('2d');
@@ -169,6 +179,10 @@ healthexp_chart = function() {
     return loading.then(function() {
         return create_chart(ctx, chart_data, "line", title_rus);
     });
+};
+
+healthexp_map = function() {
+    
 };
 
 var np_chart = neoplasms_chart();
