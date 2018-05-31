@@ -1,5 +1,6 @@
 var Chart = require("chart.js")
 var colors = require('nice-color-palettes')
+var L = require("leaflet")
 
 Chart.defaults.global.defaultFontSize = 20;
 
@@ -44,7 +45,7 @@ create_chart = function(ctx, data, type, title) {
 
             },
             legend: {
-                display: legend_shown
+                display: legend_shown,
             }
 
         }});
@@ -180,6 +181,51 @@ healthexp_chart = function() {
     });
 };
 
+
+max_healthexp_chart = function() {
+
+    var ctx = document.getElementById("health-diff-exp").getContext('2d');
+    var title_rus = "Финансирование: страны с наибольшими скачками";
+    var currcolors = colors[6].concat(colors[8]).concat(colors[6]).concat(colors[5]).concat(colors[6]);
+    var i = 0;
+    var chart_data = {labels: [], datasets: []};
+    var who_data = fetch("resources/highest-exp.json").then(string => string.json());
+    var loading = who_data.then(data => {
+        Object.entries(data).forEach(k => {
+           chart_data.datasets.push({});
+           chart_data.datasets[i].label = k[0];
+           chart_data.datasets[i].borderColor = currcolors[i];
+           chart_data.datasets[i].backgroundColor = "#aaaaaa22";
+           chart_data.datasets[i].data = [];
+           chart_data.datasets[i].lineTension = 0;
+           Object.entries(k[1]).forEach(c => {
+               chart_data.datasets[i].data.push(c[1]);
+               if (i == 0) {
+                   chart_data.labels.push(c[0]);
+               }
+           });
+           i++;
+        });
+    });
+
+    return loading.then(function() {
+        return create_chart(ctx, chart_data, "line", title_rus);
+    });
+};
+
+healthexp_legend = function(c, values) {
+    var ctx = document.getElementById("exp-map-legend").getContext('2d');
+    var chart_data = {labels: [], datasets: []};
+    for (var i = 0; i < c.length; i++) {
+        chart_data.datasets.push({});
+        chart_data.datasets[i].data = [i];
+        chart_data.datasets[i].backgroundColor = c[i];
+        chart_data.datasets[i].label = values[i];
+        chart_data.datasets[i].stacked = true;
+    }
+    create_chart(ctx, chart_data, "bar", "$ per capita, difference");
+}
+
 healthexp_map = function() {
 
     const el = document.getElementById('exp-map');
@@ -195,6 +241,8 @@ healthexp_map = function() {
 
     var numbers_pr = fetch("resources/exp-map.json").then(string => string.json());
     var countries_pr = fetch("resources/countries.geo.json").then(string => string.json());
+    var curr_colors = ["#FFFFFF", "#557700", "#778800", "#885500", "#773333", "#772277", "#6622bb", "#3322bb", "#1111bb", "#111155"];
+    var end_values = [0.5, 1, 2, 4, 6, 8, 10, 13, 20, 30];
     countries_pr.then(countries => {
         numbers_pr.then(numbers => {
             L.geoJSON(countries, {
@@ -204,27 +252,24 @@ healthexp_map = function() {
 
                     var ret = {
                         color: "#000",
-                        weight: 0.35,
+                        weight: 0.4,
                         popupContent: exp_diff,
-                        opacity: 0.5
+                        opacity: 0.5,
+                        fillOpacity: 0.8,
+
+
                         };
                     if (exp_diff == undefined) {
                         console.log(name);
-                        ret.fillColor == "#ffffff";
-                    } else if (exp_diff < 0.5) {
-                        ret.fillColor = "#bbbbee";
-                    } else if (exp_diff < 1) {
-                        ret.fillColor = "#9999ee";
-                    } else if (exp_diff < 2) {
-                        ret.fillColor = "#8888ee";
-                    } else if (exp_diff < 4) {
-                        ret.fillColor = "#6666ee";
-                    } else if (exp_diff < 6) {
-                        ret.fillColor = "#4444ee";
-                    } else if (exp_diff < 13) {
-                        ret.fillColor = "#3333ee";
+                        ret.opacity = 0;
+                        ret.fillColor = "#ffffff";
                     } else {
-                        ret.fillColor = "#1111ee";
+                        for (var i = 0; i < end_values.length; i++) {
+                            if (end_values[i] > exp_diff) {
+                                ret.fillColor = curr_colors[i];
+                                return ret;
+                            }
+                        }
                     }
                     return ret;
                 },
@@ -241,6 +286,31 @@ healthexp_map = function() {
 
             }).addTo(map);
         });
+
+    var legend = L.control({position: 'bottomright'});
+
+	legend.onAdd = function (map) {
+
+		var div = L.DomUtil.create('div', 'info legend'),
+			grades = end_values,
+			labels = [],
+			from, to;
+
+		for (var i = 0; i < grades.length; i++) {
+			from = grades[i];
+			to = grades[i + 1];
+
+			labels.push(
+				'<i style="background:' + curr_colors[i + 1] + '"></i> ' +
+				from + (to ? '&ndash;' + to : '+'));
+		}
+
+		div.innerHTML = labels.join('<br>');
+        console.log(div);
+		return div;
+	};
+
+	legend.addTo(map);
     });
 };
 
@@ -250,3 +320,4 @@ india_china_comm_chart();
 india_china_ncomm_chart();
 healthexp_chart();
 healthexp_map();
+max_healthexp_chart();
