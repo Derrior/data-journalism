@@ -141,8 +141,38 @@ india_china_ncomm_chart = function() {
     });
 };
 
+healthexp_chart = function() {
+
+    var ctx = document.getElementById("health-exp").getContext('2d');
+    var title_rus = "Финансирование медицины в USD на человека";
+    var currcolors = colors[6].concat(colors[8]).concat(colors[6]).concat(colors[5]).concat(colors[6]);
+    var i = 0;
+    var chart_data = {labels: [], datasets: []};
+    var who_data = fetch("resources/health_exp.json").then(string => string.json());
+    var loading = who_data.then(data => {
+        Object.entries(data).forEach(k => {
+           chart_data.datasets.push({});
+           chart_data.datasets[i].label = k[0];
+           chart_data.datasets[i].borderColor = currcolors[i];
+           chart_data.datasets[i].backgroundColor = "#aaaaaa22";
+           chart_data.datasets[i].data = [];
+           Object.entries(k[1]).forEach(c => {
+               chart_data.datasets[i].data.push(c[1]);
+               if (i == 0) {
+                   chart_data.labels.push(c[0]);
+               }
+           });
+           i++;
+        });
+    });
+
+    return loading.then(function() {
+        return create_chart(ctx, chart_data, "line", title_rus);
+    });
+};
 
 var np_chart = neoplasms_chart();
 var md_chart = mental_disorders_chart();
 india_china_comm_chart();
 india_china_ncomm_chart();
+healthexp_chart();
