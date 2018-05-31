@@ -368,9 +368,11 @@ infectious_map = function() {
                 onEachFeature: function(feature, layer) {
                     var name = feature.properties.name;
                     var exp_diff = numbers[name];
-                    var popup = name + ": " + exp_diff + "YLD per capita";
+                    var popup = "";
                     if (exp_diff == undefined) {
                         popup = "No data about " + name;
+                    } else {
+                        popup = name + ": " + exp_diff.toFixed(2) + " YLD per capita";
                     }
                     layer.bindPopup(popup);
                 }
