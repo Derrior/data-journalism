@@ -32867,6 +32867,10 @@ healthexp_chart = function() {
     });
 };
 
+healthexp_map = function() {
+
+};
+
 var np_chart = neoplasms_chart();
 var md_chart = mental_disorders_chart();
 india_china_comm_chart();

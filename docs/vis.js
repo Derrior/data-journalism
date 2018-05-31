@@ -182,7 +182,7 @@ healthexp_chart = function() {
 };
 
 healthexp_map = function() {
-    
+
 };
 
 var np_chart = neoplasms_chart();
