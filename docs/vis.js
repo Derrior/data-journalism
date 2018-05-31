@@ -1,6 +1,5 @@
 var Chart = require("chart.js")
 var colors = require('nice-color-palettes')
-var Leaflet = require("leaflet")
 
 Chart.defaults.global.defaultFontSize = 20;
 
@@ -183,6 +182,66 @@ healthexp_chart = function() {
 
 healthexp_map = function() {
 
+    const el = document.getElementById('exp-map');
+    var map = L.map(el).setView([0, 0], 2);
+     L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+            subdomains: 'abcd',
+            minZoom: 1,
+            maxZoom: 19
+             }).addTo(map);
+
+
+
+    var numbers_pr = fetch("resources/exp-map.json").then(string => string.json());
+    var countries_pr = fetch("resources/countries.geo.json").then(string => string.json());
+    countries_pr.then(countries => {
+        numbers_pr.then(numbers => {
+            L.geoJSON(countries, {
+                style: function(feature) {
+                    var name = feature.properties.name;
+                    var exp_diff = numbers[name];
+
+                    var ret = {
+                        color: "#000",
+                        weight: 0.35,
+                        popupContent: exp_diff,
+                        opacity: 0.5
+                        };
+                    if (exp_diff == undefined) {
+                        console.log(name);
+                        ret.fillColor == "#ffffff";
+                    } else if (exp_diff < 0.5) {
+                        ret.fillColor = "#bbbbee";
+                    } else if (exp_diff < 1) {
+                        ret.fillColor = "#9999ee";
+                    } else if (exp_diff < 2) {
+                        ret.fillColor = "#8888ee";
+                    } else if (exp_diff < 4) {
+                        ret.fillColor = "#6666ee";
+                    } else if (exp_diff < 6) {
+                        ret.fillColor = "#4444ee";
+                    } else if (exp_diff < 13) {
+                        ret.fillColor = "#3333ee";
+                    } else {
+                        ret.fillColor = "#1111ee";
+                    }
+                    return ret;
+                },
+
+                onEachFeature: function(feature, layer) {
+                    var name = feature.properties.name;
+                    var exp_diff = numbers[name];
+                    var popup = name + ": " + exp_diff + "$ is maximum difference between two years";
+                    if (exp_diff == undefined) {
+                        popup = "No data about " + name;
+                    }
+                    layer.bindPopup(popup);
+                }
+
+            }).addTo(map);
+        });
+    });
 };
 
 var np_chart = neoplasms_chart();
@@ -190,3 +249,4 @@ var md_chart = mental_disorders_chart();
 india_china_comm_chart();
 india_china_ncomm_chart();
 healthexp_chart();
+healthexp_map();
