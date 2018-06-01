@@ -2,7 +2,7 @@ var Chart = require("chart.js")
 var colors = require('nice-color-palettes')
 var L = require("leaflet")
 
-Chart.defaults.global.defaultFontSize = 20;
+Chart.defaults.global.defaultFontSize = 18;
 
 load_data = function(chart_data, name) {
     var who_data = fetch(name).then(string => string.json());
@@ -229,11 +229,11 @@ healthexp_legend = function(c, values) {
 healthexp_map = function() {
 
     const el = document.getElementById('exp-map');
-    var map = L.map(el).setView([0, 0], 2);
+    var map = L.map(el).setView([0, 0], 1.8);
      L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
             subdomains: 'abcd',
-            minZoom: 1,
+            minZoom: 1.8,
             maxZoom: 19
              }).addTo(map);
 
@@ -320,11 +320,11 @@ healthexp_map = function() {
 infectious_map = function() {
 
     const el = document.getElementById('infectious-map');
-    var map = L.map(el).setView([0, 0], 2);
+    var map = L.map(el).setView([0, 0], 1.8);
      L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
             subdomains: 'abcd',
-            minZoom: 1,
+            minZoom: 1.8,
             maxZoom: 19
              }).addTo(map);
 

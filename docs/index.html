@@ -28,7 +28,9 @@
                 font-family: 'PT Sans';
                 margin-bottom: 30px;
             }
-
+            #exp-map { height: 640px; }
+            #infectious-map { height: 640px; }
+            #mal-neoplasms { height: 200px; }
             @media ((max-width:1000px) and (orientation: portrait)) {
                 text {
                     font-size: 28px;
@@ -70,9 +72,10 @@
                 .container {
                     margin: 20px;
                 }
+                #exp-map { height: 400px; }
+                #infectious-map { height: 400px;}
+                #mal-neoplasms { height: 270px;}
             }
-            #exp-map { height: 640px; }
-            #infectious-map { height: 640px; }
 
             body {
                 min-width: 600px;
@@ -171,16 +174,19 @@
                 </div>
                 </div>
                 Посмотрим на те страны, в которых показатель заболеваемости наивысший.
-                <div class = "row">
-                <div class = "col-lg-9">
+            </section>
+            <section class="container">
+                <div class = "row align-items-center justify-content-center">
+                <div class = "col-xl-8 col-lg-9 col-md-10">
                 <canvas id="mal-neoplasms" height=220px> </canvas>
                 </div>
-                </div>
+                <div class="col-xl-4">
                 Мы видим, что больше всего люди страдают от злокачественных опухолей в продвинутых,
                 экономически благополучных европейских странах. Барбадос не находится у всех на
                 слуху, но согласно Программе Развития ООН (ПРООН), Барбадос находится
                 на четвёртом месте и является одной из лидирующих развивающихся стран по
                 уровню жизни и грамотности населения.
+                </div>
             </section>
             <section class="container">
                 Соответственно, наша гипотеза была неверна. От злокачественных новообразований
@@ -196,9 +202,9 @@
             </section>
             <section class="container">
                 Узнаем, жители каких стран наиболее подвержены психическим расстройствам.
-                <div class = "row">
-                <div class = "col-lg-10">
-                <canvas id="mental" height=180px> </canvas>
+                <div class = "row justify-content-center">
+                <div class = "col-lg-10 col-md-10">
+                <canvas id="mental" height=220px> </canvas>
                 </div>
                 </div>
 
@@ -227,20 +233,21 @@
                         В Индии население немногим меньше, чем в Китае, в обеих странах более
                         миллиарда жителей. Сравним показатели заболеваемостей.
                 <div class="row">
-                    <div class="col-lg-8 sm-offset">
+                    <div class="col-xl-8 col-lg-10 col-md-12 sm-offset">
                     <canvas id="india_china_c", height=150px> </canvas>
                     </div>
-                    <div class="col-lg-4 sm-offset">
-
-                        <li>Первый график — заразные заболевания, и на графике видно, что в Индии
-                                во всех категориях таких заболеваний больных в 2-4 раза больше.</li>
+                    <div class="col-xl-4 sm-offset">
+                <li>Первый график — заразные заболевания, и на графике видно, что в Индии
+                    во всех категориях таких заболеваний больных в 2-4 раза больше.</li>
                     </div>
                 </div>
+
+
                 <div class="row">
-                    <div class="col-lg-8">
+                    <div class="col-xl-8  col-lg-10 col-md-12">
                     <canvas id="india_china_nc", height=240px> </canvas>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-xl-4">
 
                         <li>Второй график — неинфекционные заболевания (НИЗ), значения в обеих странах практически совпадают, а в
                         отдельных случаях значения для Китая в разы больше соответствующего значения
@@ -248,6 +255,7 @@
                         заболеваемость в Китае втрое выше, чем в Индии. </li>
                     </div>
                 </div>
+                <br>
             Судя по приведённым выше графикам, в более экономически развитых странах гораздо выше
             вероятность дожить до момента, когда начинают проявляться все неинфекционные
             заболевания, а в бедных государствах гораздо более насущной проблемой является
@@ -258,7 +266,7 @@
                экономически развиты. Сравним то, как меняется финансирование медицины в этих странах
                с течением времени.
 
-                <div class = "row">
+                <div class = "row justify-content-center">
                 <div class = "col-md-10">
                 <canvas id="health-exp" height=300px> </canvas>
                 </div>
@@ -278,7 +286,7 @@
             <section class="container">
                 Посмотрим теперь не на абсолютную величину затрат, а на то, как сильно изменилась
                 эта величина за 10 лет.
-                <div class = "row">
+                <div class = "row justify-content-center">
                 <div class = "col-md-10">
                 <div id="exp-map"></div>
                 </div>
@@ -288,7 +296,7 @@
             </section>
             <section class="container">
                 Выберем несколько государств, в которых это значение наибольшее:
-                <div class = "row">
+                <div class = "row justify-content-center">
                 <div class = "col-md-10">
                 <canvas id="health-diff-exp" height=300px> </canvas>
                 </div>
