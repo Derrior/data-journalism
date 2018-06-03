@@ -12,7 +12,8 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm i; `npm bin`/http-server"
+    "start": "npm i --save; `npm bin`/http-server"
+    "runserver": "`npm bin`/http-server"
   },
   "author": "",
   "license": "ISC"
